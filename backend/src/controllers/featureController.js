@@ -1,4 +1,4 @@
-const featureModel = require('../models/featureModel');
+const featureModel = require('../models/featureModel.js');
 const joi = require('joi');
 
 const featureSchema = joi.object({

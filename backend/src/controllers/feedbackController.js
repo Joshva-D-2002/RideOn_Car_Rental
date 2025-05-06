@@ -1,4 +1,4 @@
-const feedbackModel = require('../models/feedbackModel');
+const feedbackModel = require('../models/feedbackModel.js');
 const joi = require('joi');
 
 const feedbackSchema = joi.object({

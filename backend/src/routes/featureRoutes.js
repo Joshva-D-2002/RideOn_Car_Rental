@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const featureController = require('../controllers/featureController');
+const featureController = require('../controllers/featureController.js');
 
-const { authorizeRole } = require('../middlewares/auth');
+const { authorizeRole } = require('../middlewares/auth.js');
 
 router.use(authorizeRole(['admin']));
 

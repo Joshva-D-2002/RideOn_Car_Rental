@@ -1,5 +1,5 @@
 const e = require('express');
-const discountModel = require('../models/discountModel');
+const discountModel = require('../models/discountModel.js');
 
 const joi = require('joi');
 
@@ -8,8 +8,8 @@ const discountSchema = joi.object({
     description: joi.string().required(),
     discount_type: joi.string().valid('percentage', 'fixed').required(),
     value: joi.number().required(),
-    valid_from: joi.date().required(),
-    valid_to: joi.date().required(),
+    valid_from: joi.date().iso().required(),
+    valid_to: joi.date().iso().greater(joi.ref('valid_from')).required(),
     is_active: joi.boolean().required()
 })
 

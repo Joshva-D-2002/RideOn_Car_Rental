@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const discountController = require('../controllers/discountController');
-const { authorizeRole } = require('../middlewares/auth');
+const discountController = require('../controllers/discountController.js');
+const { authorizeRole } = require('../middlewares/auth.js');
 
 router.get('/list', authorizeRole(['admin', 'customer']), discountController.getAllDiscounts);
 

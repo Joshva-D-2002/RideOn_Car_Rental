@@ -1,4 +1,4 @@
-const CarModel = require('../models/carModel');
+const CarModel = require('../models/carModel.js');
 const joi = require('joi');
 
 

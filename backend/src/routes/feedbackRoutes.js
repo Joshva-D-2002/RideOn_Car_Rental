@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const feedbackController = require('../controllers/feedbackController');
-const { authorizeRole } = require('../middlewares/auth');
+const feedbackController = require('../controllers/feedbackController.js');
+const { authorizeRole } = require('../middlewares/auth.js');
 
 router.get('/list', authorizeRole(['admin']), feedbackController.getAllFeedbacks);
 

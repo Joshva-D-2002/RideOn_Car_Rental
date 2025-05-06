@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const authModel = require('../models/authModel');
+const authModel = require('../models/authModel.js');
 const joi = require('joi');
 dotenv.config();
 

@@ -1,12 +1,12 @@
 const db = require('../config/db.config.js');
 
 exports.getAllDiscounts = async () => {
-    const [results] = await db.promise().query('SELECT * FROM discount');
+    const [results] = await db.promise().query('SELECT * FROM discounts');
     return results;
 }
 
 exports.getDiscountById = async (id) => {
-    const [results] = await db.promise().query('SELECT * FROM discount WHERE id = ?', [id]);
+    const [results] = await db.promise().query('SELECT * FROM discounts WHERE id = ?', [id]);
     return results[0];
 }
 

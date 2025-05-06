@@ -2,8 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-const carController = require('../controllers/carController');
-const { authorizeRole } = require('../middlewares/auth');
+const carController = require('../controllers/carController.js');
+const { authorizeRole } = require('../middlewares/auth.js');
 
 router.get('/list', authorizeRole(['admin', 'customer']), carController.getAllCars);
 

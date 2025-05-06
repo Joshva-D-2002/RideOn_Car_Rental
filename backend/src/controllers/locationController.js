@@ -1,4 +1,4 @@
-const Location = require('../models/locationModel');
+const Location = require('../models/locationModel.js');
 
 const joi = require('joi');
 

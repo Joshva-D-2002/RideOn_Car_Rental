@@ -1,16 +1,16 @@
 const e = require('express');
-const rentalModel = require('../models/rentalModel');
+const rentalModel = require('../models/rentalModel.js');
 
 const joi = require('joi');
 
 const rentalSchema = joi.object({
     user_id: joi.number().required(),
     car_id: joi.number().required(),
-    start_date: joi.date().required(),
-    end_date: joi.date().required(),
+    start_date: joi.date().iso().required(),
+    end_date: joi.date().iso().greater(joi.ref('start_date')).required(),
     total_price: joi.number().required(),
     discount_id: joi.number().optional(),
-    status: joi.string().valid('active', 'completed', 'cancelled').required(),
+    status: joi.string().valid('active', 'completed', 'canceled').required(),
     pickup_location_id: joi.number().required(),
     dropoff_location_id: joi.number().required(),
 })
