@@ -64,5 +64,3 @@ exports.deleteCarImage = async (carId, imageUrl) => {
     return result.affectedRows;
 }
 
-
-

@@ -7,10 +7,20 @@ const locationRoutes = require('./routes/locationRoutes.js');
 const discountRoutes = require('./routes/discountRoutes.js');
 const rentalRoutes = require('./routes/rentalRoutes.js');
 const feedbackRoutes = require('./routes/feedbackRoutes.js');
+const cors = require('cors');
 
 const app = express();
 
 app.use(express.json());
+
+const corsOption = {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+}
+
+app.use(cors(corsOption))
 
 app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
@@ -25,7 +35,7 @@ app.use('/api/car', carRoutes);
 
 app.use('/api/feature', featureRoutes);
 
-app.use('/api/location' , locationRoutes);
+app.use('/api/location', locationRoutes);
 
 app.use('/api/discount', discountRoutes);
 
