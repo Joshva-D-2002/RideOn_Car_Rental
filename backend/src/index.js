@@ -29,19 +29,17 @@ app.get('/', (req, res) => {
 
 app.use('/api', authRoutes);
 
-app.use(verifyToken);
+app.use('/api/car', verifyToken, carRoutes);
 
-app.use('/api/car', carRoutes);
+app.use('/api/feature', verifyToken, featureRoutes);
 
-app.use('/api/feature', featureRoutes);
+app.use('/api/location', verifyToken, locationRoutes);
 
-app.use('/api/location', locationRoutes);
+app.use('/api/discount', verifyToken, discountRoutes);
 
-app.use('/api/discount', discountRoutes);
+app.use('/api/rental', verifyToken, rentalRoutes);
 
-app.use('/api/rental', rentalRoutes);
-
-app.use('/api/feedback', feedbackRoutes);
+app.use('/api/feedback', verifyToken, feedbackRoutes);
 
 app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");
