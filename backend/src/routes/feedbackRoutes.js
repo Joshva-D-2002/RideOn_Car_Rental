@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const feedbackController = require('../controllers/feedbackController.js');
-const { authorizeRole } = require('../middlewares/auth.js');
 
-router.get('/list', authorizeRole(['admin']), feedbackController.getAllFeedbacks);
+router.get('/list', feedbackController.getAllFeedbacks);
 
-router.post('/add', authorizeRole(['customer']), feedbackController.addFeedback);
+router.post('/add', feedbackController.addFeedback);
 
 module.exports = router;

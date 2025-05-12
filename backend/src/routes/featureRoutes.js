@@ -2,10 +2,6 @@ const express = require('express');
 const router = express.Router();
 const featureController = require('../controllers/featureController.js');
 
-const { authorizeRole } = require('../middlewares/auth.js');
-
-router.use(authorizeRole(['admin']));
-
 router.get('/list', featureController.getAllFeatures);
 
 router.post('/add', featureController.addFeature);

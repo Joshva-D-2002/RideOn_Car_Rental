@@ -7,6 +7,7 @@ const locationRoutes = require('./routes/locationRoutes.js');
 const discountRoutes = require('./routes/discountRoutes.js');
 const rentalRoutes = require('./routes/rentalRoutes.js');
 const feedbackRoutes = require('./routes/feedbackRoutes.js');
+const userRoutes = require('./routes/userRoutes.js');
 const cors = require('cors');
 
 const app = express();
@@ -40,6 +41,8 @@ app.use('/api/discount', verifyToken, discountRoutes);
 app.use('/api/rental', verifyToken, rentalRoutes);
 
 app.use('/api/feedback', verifyToken, feedbackRoutes);
+
+app.use('/api/user', verifyToken, userRoutes);
 
 app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");

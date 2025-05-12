@@ -2,17 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const discountController = require('../controllers/discountController.js');
-const { authorizeRole } = require('../middlewares/auth.js');
 
-router.get('/list', authorizeRole(['admin', 'customer']), discountController.getAllDiscounts);
+router.get('/list', discountController.getAllDiscounts);
 
-router.get('/list/:id', authorizeRole(['admin', 'customer']), discountController.getDiscountById);
+router.get('/list/:id', discountController.getDiscountById);
 
-router.post('/add', authorizeRole(['admin']), discountController.addDiscount);
+router.post('/add', discountController.addDiscount);
 
-router.put('/update/:id', authorizeRole(['admin']), discountController.updateDiscountById);
+router.put('/update/:id', discountController.updateDiscountById);
 
-router.delete('/delete/:id', authorizeRole(['admin']), discountController.deleteDiscountById);
+router.delete('/delete/:id', discountController.deleteDiscountById);
 
 
 module.exports = router;

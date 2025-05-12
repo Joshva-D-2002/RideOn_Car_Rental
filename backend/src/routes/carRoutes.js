@@ -3,27 +3,26 @@ const express = require('express');
 const router = express.Router();
 
 const carController = require('../controllers/carController.js');
-const { authorizeRole } = require('../middlewares/auth.js');
 
-router.get('/list', authorizeRole(['admin', 'customer']), carController.getAllCars);
+router.get('/list', carController.getAllCars);
 
-router.get('/list/:id', authorizeRole(['admin', 'customer']), carController.getCarById);
+router.get('/list/:id', carController.getCarById);
 
-router.post('/add', authorizeRole(['admin']), carController.addCar);
+router.post('/add', carController.addCar);
 
-router.put('/update/:id', authorizeRole(['admin']), carController.updateCarById);
+router.put('/update/:id', carController.updateCarById);
 
-router.delete('/delete/:id', authorizeRole(['admin']), carController.deleteCarById);
+router.delete('/delete/:id', carController.deleteCarById);
 
-router.post('/car/:id/features/add', authorizeRole(['admin']), carController.addFeaturesToCar);
+router.post('/car/:id/features/add', carController.addFeaturesToCar);
 
-router.delete('/car/:id/features/delete', authorizeRole(['admin']), carController.removeFeaturesFromCar);
+router.delete('/car/:id/features/delete', carController.removeFeaturesFromCar);
 
-router.get('/car/:id/images', authorizeRole(['admin', 'customer']), carController.getCarImagesById);
+router.get('/car/:id/images', carController.getCarImagesById);
 
-router.post('/car/:id/image/upload', authorizeRole(['admin']), carController.uploadCarImage);
+router.post('/car/:id/image/upload', carController.uploadCarImage);
 
-router.delete('/car/:id/image/:imgurl', authorizeRole(['admin']), carController.deleteCarImage);
+router.delete('/car/:id/image/:imgurl', carController.deleteCarImage);
 
 
 module.exports = router;
