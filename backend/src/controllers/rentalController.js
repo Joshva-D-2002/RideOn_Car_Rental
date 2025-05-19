@@ -11,34 +11,12 @@ const rentalSchema = joi.object({
     total_price: joi.number().required(),
     discount_id: joi.number().optional(),
     status: joi.string().valid('active', 'completed', 'canceled').required(),
-    pickup_location_id: joi.number().required(),
-    dropoff_location_id: joi.number().required(),
 })
-
-exports.getAllRentals = async (req, res) => {
-    try {
-        const rentals = await rentalModel.getAllRentals();
-        res.json(rentals);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-};
-
-exports.getRentalById = async (req, res) => {
-    try {
-        const rental = await rentalModel.getRentalById(req.params.id);
-        if (!rental) {
-            return res.status(404).json({ error: 'Rental not found' });
-        }
-        res.json(rental);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
-}
 
 exports.addRental = async (req, res) => {
     try {
         const { error } = rentalSchema.validate(req.body);
+
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
         }
@@ -50,18 +28,15 @@ exports.addRental = async (req, res) => {
     }
 }
 
-exports.updateRentalById = async (req, res) => {
+exports.getRentalsByUser = async (req, res) => {
     try {
-        const { error } = rentalSchema.validate(req.body);
-        if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+        const rental = await rentalModel.getRentalsByUser(req.params.id);
+        if (!rental) {
+            return res.status(404).json({ error: 'Rentals not found' });
         }
-        const affectedRows = await rentalModel.updateRentalById(req.params.id, req.body);
-        if (affectedRows === 0) {
-            return res.status(404).json({ error: 'Rental not found' });
-        }
-        res.json({ message: 'Rental updated successfully' });
-    } catch (error) {
+        res.json(rental);
+    }
+    catch {
         res.status(500).json({ error: 'Internal server error' });
     }
 }
